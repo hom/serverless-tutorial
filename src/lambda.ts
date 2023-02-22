@@ -6,6 +6,10 @@ console.log(serverless);
 
 let server;
 
+/**
+ *
+ * @returns ServerlessExpressApp
+ */
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
   await app.init();
@@ -13,6 +17,13 @@ async function bootstrap() {
   return serverless({ app: expressApp });
 }
 
+/**
+ *
+ * @param event Handler
+ * @param context Context
+ * @param callback Callback
+ * @returns any
+ */
 export async function handler(event, context, callback) {
   console.log(event);
   server = server ?? (await bootstrap());
