@@ -26,8 +26,6 @@ provider:
   stage: ${opt:stage, 'sandbox'}
   # Default region (default: us-east-1)
   region: cn-northwest-1
-  # The AWS profile to use to deploy (default: "default" profile)
-  profile: ${self:provider.stage}
   # Use a custom name for the API Gateway API
   apiName: custom-logger-service-api
   # Endpoint type for API Gateway REST API: edge or regional (default: edge)

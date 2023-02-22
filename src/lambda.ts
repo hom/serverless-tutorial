@@ -10,6 +10,8 @@ async function bootstrap() {
   return serverless({ app: expressApp });
 }
 
-export const handler = async (event, context) => {
+export async function handler(event, context, callback) {
+  console.log(event);
   server = server ?? (await bootstrap());
-};
+  return server(event, context, callback);
+}
