@@ -7,7 +7,8 @@ console.log(serverless);
 let server;
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
+  await app.init();
   const expressApp = app.getHttpAdapter().getInstance();
   return serverless({ app: expressApp });
 }

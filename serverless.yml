@@ -33,6 +33,9 @@ provider:
     apiGateway: true
     # Optional, can be true (true equals 'Active'), 'Active' or 'PassThrough'
     lambda: true
+  iam:
+    role:
+      name: custom-serverless-tutorial-service-role-${self:provider.stage}
 
 package:
   patterns:
