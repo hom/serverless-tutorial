@@ -1,7 +1,7 @@
 # serverless.yml
 
 # Service name
-service: custom-logger-service
+service: custom-serverless-tutorial-service
 
 # Framework version constraint (semver constraint): '3', '^2.33'
 frameworkVersion: '3'
@@ -21,11 +21,11 @@ provider:
   # Default region (default: us-east-1)
   region: cn-northwest-1
   # Use a custom name for the API Gateway API
-  apiName: custom-logger-service-api
+  apiName: custom-serverless-tutorial-service-api
   # Endpoint type for API Gateway REST API: edge or regional (default: edge)
   endpointType: REGIONAL
   # Use a custom name for the CloudFormation stack
-  stackName: custom-logger-service-stack
+  stackName: custom-serverless-tutorial-service-stack-${self:provider.stage}
   # Disable automatic rollback by CloudFormation on failure. To be used for non-production environments.
   disableRollback: true
   tracing:
@@ -43,8 +43,8 @@ package:
 
 functions:
   main:
-    name: custom-logger-service
-    description: 日志测试服务
+    name: custom-serverless-tutorial-service-${self:provider.stage}
+    description: 函数测试服务
     handler: dist/lambda.handler
     timeout: 60
     events:

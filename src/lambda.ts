@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import serverless from '@vendia/serverless-express';
 
+console.log(serverless);
+
 let server;
 
 async function bootstrap() {
