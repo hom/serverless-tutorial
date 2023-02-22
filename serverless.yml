@@ -1,0 +1,64 @@
+# serverless.yml
+
+# Service name
+service: custom-logger-service
+
+# Framework version constraint (semver constraint): '3', '^2.33'
+frameworkVersion: '3'
+
+# Configuration validation: 'error' (fatal error), 'warn' (logged to the output) or 'off' (default: warn)
+# See https://www.serverless.com/framework/docs/configuration-validation
+configValidationMode: error
+# Load environment variables from .env files (default: false)
+# See https://www.serverless.com/framework/docs/environment-variables
+useDotenv: true
+# 'warn' reports deprecations on the go, 'error' will result with an exception being thrown on first approached deprecation
+# deprecationNotificationMode: warn:summary
+# Disable deprecations by their codes (default: empty)
+# See https://www.serverless.com/framework/docs/deprecations
+# disabledDeprecations:
+#   - DEP_CODE_1 # Deprecation code to disable
+#   - '*' # Disable all deprecation messages
+
+provider:
+  name: aws
+  # Default stage (default: dev)
+  stage: ${opt:stage, 'sandbox'}
+  # Default region (default: us-east-1)
+  region: cn-northwest-1
+  # The AWS profile to use to deploy (default: "default" profile)
+  profile: ${self:provider.stage}
+  # Use a custom name for the API Gateway API
+  apiName: custom-logger-service-api
+  # Endpoint type for API Gateway REST API: edge or regional (default: edge)
+  endpointType: REGIONAL
+  # Use a custom name for the CloudFormation stack
+  stackName: custom-logger-service-stack
+  # Disable automatic rollback by CloudFormation on failure. To be used for non-production environments.
+  disableRollback: true
+  tracing:
+    # Can only be true if API Gateway is inside a stack.
+    apiGateway: true
+    # Optional, can be true (true equals 'Active'), 'Active' or 'PassThrough'
+    lambda: true
+
+package:
+  patterns:
+    - '!**'
+    - dist/lambda.js
+    - package.json
+    - .env*
+
+functions:
+  main:
+    name: custom-logger-service
+    description: 日志测试服务
+    handler: dist/lambda.handler
+    timeout: 60
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: '{proxy+}'

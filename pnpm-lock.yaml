@@ -13,6 +13,7 @@ specifiers:
   '@types/supertest': ^2.0.11
   '@typescript-eslint/eslint-plugin': ^5.0.0
   '@typescript-eslint/parser': ^5.0.0
+  '@vendia/serverless-express': ^4.10.1
   eslint: ^8.0.1
   eslint-config-prettier: ^8.3.0
   eslint-plugin-prettier: ^4.0.0
@@ -32,6 +33,7 @@ dependencies:
   '@nestjs/common': 9.3.9_mnr6j2del53muneqly5h4y27ai
   '@nestjs/core': 9.3.9_q6agyr4hwia55oswpsa7zjxcpm
   '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
+  '@vendia/serverless-express': 4.10.1
   reflect-metadata: 0.1.13
   rxjs: 7.8.0
 
@@ -1363,6 +1365,11 @@ packages:
       '@typescript-eslint/types': 5.53.0
       eslint-visitor-keys: 3.3.0
     dev: true
+
+  /@vendia/serverless-express/4.10.1:
+    resolution: {integrity: sha512-8FM/GnQ8bbp1fynAWLGzNIy3Hyhoevixwh2Aj8qBPpw7rkbWZ1I7RC2XhZZaTZo/1JTDlff4cDDmkgY0CzUV7g==}
+    engines: {node: '>=12'}
+    dev: false
 
   /@webassemblyjs/ast/1.11.1:
     resolution: {integrity: sha512-ukBh14qFLjxTQNTXocdyksN5QdM28S1CxHt2rdskFyL+xFV7VremuBLVbmCePj+URalXBENx/9Lm7lnhihtCSw==}
