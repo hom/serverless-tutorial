@@ -28,15 +28,21 @@ provider:
   stackName: custom-serverless-tutorial-service-stack-${self:provider.stage}
   # Disable automatic rollback by CloudFormation on failure. To be used for non-production environments.
   disableRollback: true
+  # Custom tracing
   tracing:
     # Can only be true if API Gateway is inside a stack.
     apiGateway: true
     # Optional, can be true (true equals 'Active'), 'Active' or 'PassThrough'
     lambda: true
+  # Set lambda runtime environment
+  environment:
+    NO_COLOR: 1
+  # Custom lambda IAM role
   iam:
     role:
       name: custom-serverless-tutorial-service-role-${self:provider.stage}
 
+# Set what to package into lambda
 package:
   patterns:
     - '!**'
@@ -44,6 +50,7 @@ package:
     - package.json
     - .env*
 
+# Set lambda
 functions:
   main:
     name: custom-serverless-tutorial-service-${self:provider.stage}
